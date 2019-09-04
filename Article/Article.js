@@ -85,6 +85,28 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Are Hipsters taking over coding?',
+    date: 'Sep 4th, 2019',
+    firstParagraph: `Lorem ipsum dolor amet la croix bushwick green juice enim  succulents blog, sint scenester lyft. Tattooed ramps nisi, master cleanse occaecat squid magna qui ex pitchfork ad. Tempor culpa health goth non. Lyft organic enim godard subway tile ad, poke chillwave aesthetic keytar ullamco. Pabst distillery street art chicharrones tumblr excepteur selfies. Fugiat marfa ex drinking vinegar, +1 asymmetrical try-hard listicle taxidermy. Commodo vaporware raw denim jean shorts ut woke vape ut.`,
+
+    secondParagraph: `Blog tacos hella farm-to-table echo park. Yr lo-fi small batch cray. Food truck est enamel pin neutra. Crucifix chillwave wolf lomo fam lumbersexual taxidermy polaroid banjo copper mug vinyl. 8-bit direct trade consectetur minim gochujang brooklyn put a bird on it lomo tumeric marfa pour-over. Drinking vinegar butcher ut adaptogen roof party dreamcatcher, poke selvage try-hard non keffiyeh ut. Occupy green juice ut crucifix meggings everyday carry PBR&B jean shorts stumptown chambray post-ironic freegan VHS.`,
+
+    thirdParagraph: `Etsy woke fugiat, XOXO tempor mumblecore celiac flannel incididunt microdosing deserunt intelligentsia palo santo. Ea pabst man braid, in food truck authentic man bun aute tumeric qui helvetica hell of squid asymmetrical hella. Hella proident pok pok anim in. Est tilde laboris, disrupt laborum blog biodiesel. Fixie roof party swag master cleanse ramps shabby chic. 90's literally tofu mumblecore, waistcoat id tote bag you probably haven't heard of them lyft humblebrag biodiesel.
+
+    Oh. You need a little dummy text for your mockup? How quaint.
+    
+    I bet you’re still using Bootstrap too…`
+  },
+  {
+    title: 'Zombies, the next thing to give your code that extra errrrrrrr',
+    date: 'Sep 4th, 2019',
+    firstParagraph: `Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.`,
+
+    secondParagraph: `Cum horribilem walking dead resurgere de crazed sepulcris creaturis, zombie sicut de grave feeding iride et serpens. Pestilentia, shaun ofthe dead scythe animated corpses ipsa screams. Pestilentia est plague haec decaying ambulabat mortuos. Sicut zeder apathetic malus voodoo. Aenean a dolor plan et terror soulless vulnerum contagium accedunt, mortui iam vivam unlife. Qui tardius moveri, brid eof reanimator sed in magna copia sint terribiles undeath legionis. Alii missing oculis aliorum sicut serpere crabs nostram. Putridi braindead odores kill and infect, aere implent left four dead. `,
+
+    thirdParagraph: `Lucio fulci tremor est dark vivos magna. Expansis creepy arm yof darkness ulnis witchcraft missing carnem armis Kirkman Moore and Adlard caeruleum in locis. Romero morbo Congress amarus in auras. Nihil horum sagittis tincidunt, zombie slack-jawed gelida survival portenta. The unleashed virus est, et iam zombie mortui ambulabunt super terram. Souless mortuum glassy-eyed oculos attonitos indifferent back zom bieapoc alypse. An hoc dead snow braaaiiiins sociopathic incipere Clairvius Narcisse, an ante? Is bello mundi z?`
   }
 ];
 
@@ -112,3 +134,53 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const article = document.querySelector('.articles');
+
+data.forEach(data =>{
+  article.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  //define new elements from the sample template
+  const container = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const pDate = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const span = document.createElement('span');
+  
+
+  //append the children
+  container.appendChild(h2);
+  container.appendChild(pDate);
+  container.appendChild(span);
+  container.appendChild(p1);
+  container.appendChild(p2);
+  container.appendChild(p3);
+  
+
+  //add classes
+  container.classList.add('article');
+  pDate.classList.add('date');
+  span.classList.add('expandButton');
+
+  //set text content
+  h2.textContent = title;
+  pDate.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+
+
+  // add event listener for the toggle button
+  container.addEventListener('click', e => {
+    console.log('button clicked', e.target);
+    container.classList.toggle('article-open');
+  })
+
+  return container
+}
+
+// console.log()

@@ -33,3 +33,67 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+// const menuComponent = document.querySelector('.header');
+
+// menuItems.forEach(element =>{
+//   menuComponent.appendChild(createMenu(element))
+// })
+
+function createMenu(items){
+  //define new elements from teh template above
+  const menuBox = document.createElement('div');
+  const uList = document.createElement('ul');
+
+
+  //add classes
+  menuBox.classList.add('menu');
+
+  for (let i=0; i <items.length; i++){
+    let li = document.createElement('li');
+    uList.appendChild(li);
+    li.textContent = items[i];
+  }
+
+  //add an event listener for the toggle button
+  const menuToggle = document.querySelector('.menu-button');
+
+  menuToggle.addEventListener('click', (e) =>{
+    console.log('button clicked');
+    menuBox.classList.toggle('menu--open');
+  })
+
+  const header = document.querySelector('.header');
+  header.appendChild(menuBox);
+  menuBox.appendChild(uList);
+
+  return menuBox
+}
+
+createMenu(menuItems);
+
+
+//append the children
+  // menuBox.appendChild(uList);
+  // uList.appendChild(liList);
+  //do this ^ in the for loop
+
+  //set text content
+  // liList.textContent = menuItems;
+  // console.log(liList);
+  //do this ^ in the for loop
+
+    // const menuList = '<ul>'
+  
+  // menuItems.forEach(function(item){
+  //   console.log(menuList);
+  //   menuList += '<li>' + item + '<li>';
+  // });
+  // menuList += '</ul>';
+  // document.querySelector('.menu').innerHTML = menuList;
+
+  
+  // console.log(`hello`);
+
+    // menuToggle.addEventListener('click', (e) =>{
+  //   console.log('button clicked')
+  // })
